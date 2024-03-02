@@ -1,0 +1,49 @@
+This is an open book (or open web) assignment.  Please provide links to any articles you use to guide your 
+decisions in working through these exercises.
+
+Please make small comments in this file on each of the exercises to note your approach to the solution.
+Expect the reviewer to use these comments as a guide to review your submission.
+
+
+[1] - Given an array of ints, write a Java method to total all the values that are even numbers.
+
+---------------------------------------------------------------------------------------------------------------
+
+[2] - What is the difference between a volatile and a transient variable? And when to use them?
+
+---------------------------------------------------------------------------------------------------------------
+
+[3] - What is the output of the program below? Explain your answer.
+
+public class ThreadExercise extends Thread {
+    public static void main(String[] args) {
+        ThreadB b = new ThreadB();
+        b.start();
+ 
+        synchronized(b) {
+            try{
+                System.out.println("Waiting for b to complete...");
+                sleep(1000);
+            }catch(InterruptedException e){}
+ 
+            System.out.println("Total is: " + b.total);
+        }
+    }
+}
+ 
+class ThreadB extends Thread {
+    int total;
+    @Override
+    public void run() {
+        synchronized(this){
+            for(int i=0; i<=100 ; i++) {
+                total = i;
+            }
+            notify();
+        }
+    }
+}    
+
+
+Also, would the answer change if we were to replace: sleep(1000); with b.wait(); ? Why or why not?
+
