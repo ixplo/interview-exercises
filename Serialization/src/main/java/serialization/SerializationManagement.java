@@ -13,7 +13,7 @@ import java.util.List;
  * @author Administrator
  */
 public class SerializationManagement {
-    private static final String DEFAULT_FILE_FORMAT = String.format("C:%sSerialized%s%1$s.dat", File.separator, File.separator);
+    private static final String DEFAULT_FILE_FORMAT = "C:/Serialized/%1$s.dat".replace("/", File.separator);
     private final String fileFormat;
 
     public SerializationManagement() {
