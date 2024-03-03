@@ -38,7 +38,7 @@ public class TestApplication {
         }
 
         sm.serialize("TestData", dataObjects);
-        dataObjects = sm.deserialize("TestData", DataObject1.class);
+        dataObjects = sm.deserializeList("TestData", DataObject1.class);
 
         for (int x = 0; x < 100; x++) {
             DataObject1 do1 = dataObjects.get(x);

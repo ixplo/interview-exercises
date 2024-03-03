@@ -1,5 +1,6 @@
 package serialization;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,11 +13,20 @@ import java.util.List;
  * @author Administrator
  */
 public class SerializationManagement {
-    private static final String FILE_FORMAT = "C:\\Serialized\\%1$s.dat";
+    private static final String DEFAULT_FILE_FORMAT = String.format("C:%sSerialized%s%1$s.dat", File.separator, File.separator);
+    private final String fileFormat;
+
+    public SerializationManagement() {
+        this(DEFAULT_FILE_FORMAT);
+    }
+
+    public SerializationManagement(String fileFormat) {
+        this.fileFormat = fileFormat;
+    }
 
     public void serialize(String dataIdentifier, Object dataObject) {
         System.out.printf("Started serialization to file: %s%n", dataIdentifier);
-        try (FileOutputStream file = new FileOutputStream(String.format(FILE_FORMAT, dataIdentifier));
+        try (FileOutputStream file = new FileOutputStream(String.format(fileFormat, dataIdentifier));
              ObjectOutputStream out = new ObjectOutputStream(file)) {
             out.writeObject(dataObject);
             System.out.println("Serialization finished successfully.");
@@ -29,10 +39,20 @@ public class SerializationManagement {
         }
     }
 
-    public <T> List<T> deserialize(String dataIdentifier, Class<T> objectClass) {
+    public <T> T deserialize(String dataIdentifier, Class<T> objectClass) {
+        Object deserialized = deserialize(dataIdentifier);
+        return castObject(deserialized, objectClass);
+    }
+
+    public <T> List<T> deserializeList(String dataIdentifier, Class<T> objectClass) {
+        Object deserialized = deserialize(dataIdentifier);
+        return castListOfObjects(deserialized, objectClass);
+    }
+
+    public Object deserialize(String dataIdentifier) {
         System.out.printf("Started deserialization from file: %s%n", dataIdentifier);
         Object result = null;
-        try (FileInputStream file = new FileInputStream(String.format(FILE_FORMAT, dataIdentifier));
+        try (FileInputStream file = new FileInputStream(String.format(fileFormat, dataIdentifier));
              ObjectInputStream in = new ObjectInputStream(file)) {
             result = in.readObject();
             System.out.println("Deserialization finished successfully.");
@@ -45,11 +65,15 @@ public class SerializationManagement {
         } catch (Exception e) {
             System.out.printf("Deserialization failed with unexpected exception: %s", e);
         }
-        return castObject(objectClass, result);
+        return result;
     }
 
     @SuppressWarnings("unchecked")
-    private <T> List<T> castObject(Class<T> clazz, Object object) {
+    private <T> T castObject(Object object, Class<T> clazz) {
+        return (T) object;
+    }
+    @SuppressWarnings("unchecked")
+    private <T> List<T> castListOfObjects(Object object, Class<T> clazz) {
         return (List<T>) object;
     }
 }
