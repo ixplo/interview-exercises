@@ -51,7 +51,7 @@ public class TestApplication
             DataObject1 do1 = dataObjects.get(x);
             assert(do1.getProperty1().equals(String.valueOf(x)));
             assert(do1.getProperty2() == x);
-            assert(do1.getComplexTypeProperty().getSourceIdentifier().equals("Serialized"));
+            assert(do1.getComplexTypeProperty().getSourceIdentifier() == null);
             assert(do1.getComplexTypeProperty().getProperty1().equals(String.valueOf(x)));
             assert(do1.getComplexTypeProperty().getProperty2() == x);
         }

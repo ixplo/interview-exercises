@@ -10,7 +10,7 @@ public class DataObject2 implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    private String sourceIdentifier;
+    private transient String sourceIdentifier;
     private String property1;
     private int property2;
 
