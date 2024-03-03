@@ -55,6 +55,7 @@ public class TestApplication
             assert(do1.getComplexTypeProperty().getProperty1().equals(String.valueOf(x)));
             assert(do1.getComplexTypeProperty().getProperty2() == x);
         }
+        System.out.println("Assertions are passed");
     }
     
 }
