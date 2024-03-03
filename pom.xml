@@ -18,6 +18,7 @@
     <modules>
         <module>Serialization</module>
         <module>SerializationExercises</module>
+        <module>extra</module>
     </modules>
 
 </project>

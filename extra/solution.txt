@@ -1,0 +1,18 @@
+[1] 
+Method implemented and tested
+[2] 
+Volatile modifier guarantees that any thread that reads a field will see the most recently written value
+Transient allow you to define variables that you don't want to serialize.
+[3]
+Result of code execution is:
+	Waiting for b to complete...
+	Total is: 0
+	
+For changed variant will be:
+	Waiting for b to complete...
+	Total is: 100
+	
+First variant actually is not waiting thread b, because Java not garantee that execution of separate thread will be finished when you just pause your code in main thread. 
+You should implement wait mechanism like in second variant.
+
+ 
