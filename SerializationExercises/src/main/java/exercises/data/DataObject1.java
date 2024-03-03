@@ -1,11 +1,15 @@
 package exercises.data;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Administrator
  */
-public class DataObject1
+public class DataObject1 implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     private String property1;
     private int property2;
     private DataObject2 complexTypeProperty;
