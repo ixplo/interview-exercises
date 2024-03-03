@@ -1,0 +1,33 @@
+Prestep:
+enable -ea in VM options
+https://stackoverflow.com/questions/11415160/how-to-enable-the-java-keyword-assert-in-eclipse-program-wise
+
+1. implement Serializable
+UUID
+
+2. private transient String sourceIdentifier;
+assert(do1.getComplexTypeProperty().getSourceIdentifier() == null);
+
+3. file.close(); 
+out.close();
+in.close();
+
+4. add try-catch-with-resources
+Example of trace message:
+Deserialization failed with FileNotFoundException: java.io.FileNotFoundException: C:\Serialized\TestData.dat (The system cannot find the file specified)
+
+5. methods name
+constant name DEFAULT_FILE_FORMAT
+add constuctors with fileFormat
+remove throws IOException, FileNotFoundException, ClassNotFoundException
+remove dataObjects = null; - redundunt
+ArrayList - use List in type declarations
+add cast method
+change braces style from C++ to Java
+
+6. move junit dependency to module pom.xml (no dependencies in the root)
+Add tests
+
+7. download NetBeans
+https://www.apache.org/dyn/closer.lua/netbeans/netbeans-installers/21/Apache-NetBeans-21-bin-windows-x64.exe
+perform analysis
