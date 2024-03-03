@@ -31,10 +31,13 @@ public class SerializationManagement {
             out.writeObject(dataObject);
             System.out.println("Serialization finished successfully.");
         } catch (FileNotFoundException e) {
-            System.out.printf("Serialization failed with FileNotFoundException: %s", e);
+            e.printStackTrace();
+            System.out.printf("Serialization failed with FileNotFoundException: %s", e.fillInStackTrace());
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.printf("Serialization failed with IOException: %s", e);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.printf("Serialization failed with unexpected exception: %s", e);
         }
     }
@@ -57,12 +60,16 @@ public class SerializationManagement {
             result = in.readObject();
             System.out.println("Deserialization finished successfully.");
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
             System.out.printf("Deserialization failed with FileNotFoundException: %s", e);
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.printf("Deserialization failed with IOException: %s", e);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             System.out.printf("Deserialization failed with ClassNotFoundException: %s", e);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.printf("Deserialization failed with unexpected exception: %s", e);
         }
         return result;
