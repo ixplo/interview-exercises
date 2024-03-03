@@ -20,12 +20,16 @@ public class SerializationManagement
         FileOutputStream file = new FileOutputStream(String.format(fileFormat, dataIdentifier));
         ObjectOutputStream out = new ObjectOutputStream(file);
         out.writeObject(dataObject);
+        out.close();
+        System.out.println("Serialization finished.");
     }
     
     public Object Deserialize(String dataIdentifier) throws FileNotFoundException, IOException, ClassNotFoundException
     {
         FileInputStream file = new FileInputStream(String.format(fileFormat, dataIdentifier));
         ObjectInputStream in = new ObjectInputStream(file);
-        return in.readObject();
+        Object result = in.readObject();
+        in.close();
+        return result;
     }
 }
